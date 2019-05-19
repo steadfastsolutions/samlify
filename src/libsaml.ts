@@ -131,7 +131,7 @@ const libSaml = () => {
   * @type {LoginRequestTemplate}
   */
   const defaultLoginRequestTemplate = {
-    context: '<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="{ID}" Version="2.0" IssueInstant="{IssueInstant}" Destination="{Destination}" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="{AssertionConsumerServiceURL}"><saml:Issuer>{Issuer}</saml:Issuer><samlp:NameIDPolicy Format="{NameIDFormat}" AllowCreate="{AllowCreate}"/></samlp:AuthnRequest>',
+    context: '<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="{ID}" Version="2.0" IssueInstant="{IssueInstant}" Destination="{Destination}" ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" AssertionConsumerServiceURL="{AssertionConsumerServiceURL}"><saml:Issuer>{Issuer}</saml:Issuer></samlp:AuthnRequest>',
   };
   /**
   * @desc Default logout request template
@@ -478,11 +478,13 @@ const libSaml = () => {
             metadataCert = flattenDeep(metadataCert);
           }
           metadataCert = metadataCert.map(utility.normalizeCerString);
-          let x509Certificate = select(".//*[local-name(.)='X509Certificate']", s)[0].firstChild.data;
+          
+          /*let x509Certificate = select(".//*[local-name(.)='X509Certificate']", s)[0].firstChild.data;
           x509Certificate = utility.normalizeCerString(x509Certificate);
           if (includes(metadataCert, x509Certificate)) {
             selectedCert = x509Certificate;
-          }
+          }*/
+          const selectedCert = metadataCert[0];
           if (selectedCert === '') {
             throw new Error('certificate in document is not matched those specified in metadata');
           }
