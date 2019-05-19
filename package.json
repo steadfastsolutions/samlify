@@ -41,7 +41,7 @@
     "typescript": "^2.7.2",
     "uuid": "^3.2.1",
     "xml": "^1.0.0",
-    "xml-crypto": "^0.10.1",
+    "xml-crypto": "git+https://github.com/steadfastsolutions/xml-crypto",
     "xml-encryption": "tngan/node-xml-encryption",
     "xmldom": "^0.1.19",
     "xpath": "0.0.24"
